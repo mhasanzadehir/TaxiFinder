@@ -6,6 +6,9 @@
     <color name="white">#FFF</color>
     <color name="yellow">#FFC70D</color>
     <color name="blue">#2452C1</color>
+    <color name="action_bar_blue">#3547AB</color>
+    <color name="header_blue">#2651C1</color>
+    <color name="blue_light">#1885DA</color>
     <color name="gray">#e0e0e0</color>
     <color name="gray_dark">#919294</color>
     <color name="black">#000000</color>

@@ -2,4 +2,13 @@
     <string name="app_name">Taxi QR Reader</string>
     <string name="list">ثبت نام شده ها</string>
     <string name="scan_barcode">اسکن بارکد</string>
+    <string name="driver_info">اطلاعات راننده</string>
+    <string name="ok">تایید</string>
+    <string name="brand">برند</string>
+    <string name="model">مدل</string>
+    <string name="year">سال تولید</string>
+    <string name="usage">کاربری</string>
+    <string name="company">شرکت</string>
+    <string name="color">رنگ</string>
+    <string name="phone_number">شماره ی موبایل</string>
 </resources>

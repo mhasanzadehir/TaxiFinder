@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/rootLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".DriverDetailActivity">
+
+    <RelativeLayout
+            android:id="@+id/action_bar"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:background="@color/action_bar_blue"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/backImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+
+        <TextView
+                android:text="@string/driver_info"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:id="@+id/body"
+            android:layout_below="@id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_above="@id/footer_bar"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:background="@color/header_blue"
+                android:layout_height="0dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="100dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="100dp"/>
+
+            <TextView
+                    android:id="@+id/fullName"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="مهدی حسن زاده"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:layout_below="@id/profileImage"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-8dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:background="@drawable/name_bg"
+                    android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:id="@+id/phoneNumberLayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="-16dp"
+                android:orientation="horizontal"
+                android:layout_height="48dp">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/phoneNumberLabelCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_weight="1"
+                    android:elevation="6dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    app:cardPreventCornerOverlap="false"
+                    app:contentPadding="4dp">
+
+                <TextView
+                        android:id="@+id/phoneNumberTextView"
+                        android:layout_width="match_parent"
+                        android:text="@string/phone_number"
+                        android:gravity="center"
+                        android:textColor="@color/header_blue"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/phoneNumberCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="24dp"
+                    android:elevation="6dp"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    app:cardPreventCornerOverlap="false"
+                    app:contentPadding="4dp">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="@string/phone_number"
+                        android:gravity="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+
+        <ScrollView
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/carTagImageView"
+                        android:layout_width="682px"
+                        android:layout_height="166px"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/car_tag"/>
+
+                <LinearLayout
+                        android:id="@+id/brandLayout"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/carTagImageView"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/brandTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+
+                    <TextView android:id="@+id/brandLabel"
+                            android:layout_width="0dp"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:gravity="center"
+                              android:textColor="@color/gray_dark"
+                              android:textSize="12sp"
+                              android:text="@string/brand"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/modelLayout"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/brandLayout"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/modelTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+                    <TextView
+                            android:id="@+id/modelLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"
+                            android:text="@string/model"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/yearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/modelLayout"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/yearTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+                    <TextView android:id="@+id/yearLabel"
+                            android:layout_width="0dp"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:gravity="center"
+                              android:textColor="@color/gray_dark"
+                              android:textSize="12sp"
+                              android:text="@string/year"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/usageLayout"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/yearLayout"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/usageTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+                    <TextView
+                            android:id="@+id/usageLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"
+                            android:text="@string/usage"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/companyLayout"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/usageLayout"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/companyTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+                    <TextView
+                            android:id="@+id/companyLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"
+                            android:text="@string/company"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/colorLayout"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/companyLayout"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/colorTextView"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:textColor="@color/header_blue"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="ایران خودرو"/>
+                    <View android:layout_width="2dp" android:layout_height="match_parent"
+                          android:background="@color/blue_light"/>
+                    <TextView
+                            android:id="@+id/colorLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"
+                            android:text="@string/color"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+            android:id="@+id/footer_bar"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/action_bar_blue"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/ok"
+                android:text="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

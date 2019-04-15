@@ -24,6 +24,15 @@ public class DriverDetail {
     @Expose
     private Car car;
 
+    public DriverDetail(Integer driverId, String imageUrl, String firstName, String lastName, String msisdn, Car car) {
+        this.driverId = driverId;
+        this.imageUrl = imageUrl;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.msisdn = msisdn;
+        this.car = car;
+    }
+
     public Integer getDriverId() {
         return driverId;
     }

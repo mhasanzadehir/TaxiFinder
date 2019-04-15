@@ -4,13 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.ExpandableListView
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.google.android.gms.vision.barcode.Barcode
@@ -83,7 +78,7 @@ class MainActivity : BaseActivity() {
             )
 
         // Setting up the Adapter
-        val adapter = DriverAdapter(this, drivers)
+        val adapter = DriverAdapter(this, drivers, rootLayout)
 
         listView.layoutManager = LinearLayoutManager(this)
         listView.adapter = adapter

@@ -4,6 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:id="@+id/rootLayout"
         android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
@@ -92,7 +93,6 @@
                     android:id="@+id/bottom_layout"
                     android:layout_below="@id/profileImage"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                 <TextView
@@ -107,8 +107,8 @@
 
                 <ImageView
                         android:id="@+id/carTagImageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="170.5px"
+                        android:layout_height="41.5px"
                         android:src="@mipmap/car_tag"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="8dp"

@@ -17,6 +17,16 @@ public class Car {
     @SerializedName("usage")
     @Expose
     private String usage;
+
+    public Car(String brand, String model, String createdYear, String usage, String color, String company) {
+        this.brand = brand;
+        this.model = model;
+        this.createdYear = createdYear;
+        this.usage = usage;
+        this.color = color;
+        this.company = company;
+    }
+
     @SerializedName("color")
     @Expose
     private String color;
