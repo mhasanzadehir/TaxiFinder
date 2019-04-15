@@ -2,96 +2,91 @@ package ir.sharif.taxifinder
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ExpandableListView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
+import ir.sharif.taxifinder.webservice.webservices.drivers.Driver
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ExpandableListView.OnChildClickListener {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Create items
-        val item1 = AHBottomNavigationItem("QR Scan", R.drawable.qr_code)
-        val item2 = AHBottomNavigationItem("List", R.drawable.qr_code)
+        val item1 = AHBottomNavigationItem(R.string.scan_barcode, R.drawable.qrcode, R.color.white)
+        val item2 = AHBottomNavigationItem(R.string.list, R.drawable.list, R.color.white)
 
         // Add items
         bottomNavigation.addItem(item1)
         bottomNavigation.addItem(item2)
 
+        bottomNavigation.defaultBackgroundColor = Color.parseColor("#2452C1")
+        // Change colors
+        bottomNavigation.accentColor = Color.WHITE
+        bottomNavigation.inactiveColor = Color.WHITE
+
+        bottomNavigation.titleState = AHBottomNavigation.TitleState.ALWAYS_SHOW
+
+        bottomNavigation.setTitleTextSize(26F, 26F)
 
         // Set listeners
         bottomNavigation.setOnTabSelectedListener { position, wasSelected ->
             if (position == 0) {
                 val launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false)
                 startActivityForResult(launchIntent, 100)
+            } else {
+                callWebservice()
             }
             true
         }
+
+
+
 
         initList()
 
     }
 
-    private fun initList() {
+    private fun callWebservice() {
 
-        val groupData = ArrayList<String>()
-        groupData.add("Mobiles")
-        groupData.add("Laptops")
-        groupData.add("TV")
-
-        val mobileData = ArrayList<String>()
-        mobileData.add("Google Pixel")
-        mobileData.add("Samsung")
-        mobileData.add("OnePlus")
-        mobileData.add("LG")
-        mobileData.add("Motorola")
-
-        val laptopData = ArrayList<String>()
-        laptopData.add("Apple")
-        laptopData.add("HP")
-        laptopData.add("Dell")
-        laptopData.add("Lenovo")
-        laptopData.add("Acer")
-
-        val tvData = ArrayList<String>()
-        tvData.add("Sony")
-        tvData.add("Samsung")
-        tvData.add("LG")
-        tvData.add("Panasonic")
-
-        val childData = HashMap<String, List<String>>()
-        childData[groupData[0]] = mobileData
-        childData[groupData[1]] = laptopData
-        childData[groupData[2]] = tvData
-
-        // Setting up the Adapter
-        val adapter = ExpandableListAdapter(this, groupData, childData)
-
-        listView.setAdapter(adapter)
-        // Implementing callback to get notified when a Child item is clicked
-        listView.setOnChildClickListener(this)
+//        thread(true) {
+//            val drivers = WebserviceHelper.getDrivers()
+//        }
     }
 
-    override fun onChildClick(
-        parent: ExpandableListView?,
-        v: View?,
-        groupPosition: Int,
-        childPosition: Int,
-        id: Long
-    ): Boolean {
-        val childItem = v?.findViewById<TextView>(R.id.tv_child_text)
-        val item = childItem?.text.toString()
-        Toast.makeText(this, "$item clicked!", Toast.LENGTH_SHORT).show()
-        return true
+    private fun initList() {
+
+        val drivers = arrayListOf(Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶")
+            )
+
+        // Setting up the Adapter
+        val adapter = DriverAdapter(this, drivers)
+
+        listView.layoutManager = LinearLayoutManager(this)
+        listView.adapter = adapter
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

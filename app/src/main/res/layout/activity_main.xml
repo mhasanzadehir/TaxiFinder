@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <ExpandableListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_alignParentTop="true"
+                  android:layout_height="match_parent"
+                  android:layout_above="@id/bottomNavigation"
+                  android:orientation="vertical"
+                  android:baselineAligned="false">
 
-    </ExpandableListView>
+        <FrameLayout android:id="@+id/logoFrame"
+                     android:layout_weight="1"
+                     android:background="@color/yellow"
+                     android:layout_width="match_parent"
+                     android:padding="36dp"
+                     android:layout_height="0dp">
 
+            <ImageView
+                    android:src="@mipmap/taxi_logo"
+                    android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listView"
+                android:layout_weight="2"
+                android:divider="@android:color/transparent"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+    </LinearLayout>
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

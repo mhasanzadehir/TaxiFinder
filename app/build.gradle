@@ -29,8 +29,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.gms:play-services-vision:17.0.2'
     implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
     compile project(path: ':barcode-reader')
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
