@@ -40,4 +40,9 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     public int getItemCount() {
         return drivers.size();
     }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers.clear();
+        this.drivers.addAll(drivers);
+    }
 }

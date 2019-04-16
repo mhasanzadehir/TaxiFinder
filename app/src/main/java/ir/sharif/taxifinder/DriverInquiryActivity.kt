@@ -35,6 +35,8 @@ class DriverInquiryActivity : BaseActivity() {
         footer_bar.setOnClickListener {
             callInquiryWS()
         }
+
+        driverCodeTv.text = FormatHelper.toPersianNumber(driverCode)
         driverCodeLabel.bold()
         driverCodeTv.bold()
         clearFormLabel.bold()
@@ -67,15 +69,30 @@ class DriverInquiryActivity : BaseActivity() {
         }
     }
 
+    fun normalizePlate(plate: String):String{
+        var result = ""
+        result+=plate[5]
+        result+=plate[6]
+        result+=plate[2]
+        result+=plate[3]
+        result+=plate[4]
+        result+="04"
+        result+=plate[0]
+        result+=plate[1]
+        return result
+    }
     private fun callInquiryWS() {
         thread(true) {
-            val response = WebserviceHelper.getDriverDetail(plate, uuid!!)
+            val response = WebserviceHelper.getDriverDetail(normalizePlate(plate), uuid!!)
             if (response.code == 200) {
+                DataRepo.driverDetail = response.driverDetail
                 val intent = Intent(this, DriverDetailActivity::class.java)
-                intent.putExtra("DRIVER_DETAIL", response.driverDetail)
+                intent.putExtra("PLATE", plate)
                 startActivity(intent)
             } else{
-                Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
+                runOnUiThread {
+                    Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

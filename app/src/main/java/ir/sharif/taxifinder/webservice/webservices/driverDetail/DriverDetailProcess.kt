@@ -6,9 +6,8 @@ import ir.sharif.taxifinder.webservice.base.BaseProcess
 import ir.sharif.taxifinder.webservice.base.MyRetrofit
 import ir.sharif.taxifinder.webservice.base.WebserviceException
 
-class DriverDetailProcess(plateNo: String, id: String) : BaseProcess() {
-    private val request: DriverDetailRequest = DriverDetailRequest(plateNo, id)
+class DriverDetailProcess(private val plateNo: String, val id: String) : BaseProcess() {
 
     @Throws(IOException::class, WebserviceException::class)
-    override fun process() = send(MyRetrofit.webserviceUrls.driverDetail(request))
+    override fun process() = send(MyRetrofit.webserviceUrls.driverDetail(plateNo, id))
 }

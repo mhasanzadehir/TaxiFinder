@@ -17,10 +17,8 @@ object MyRetrofit {
                 .setLenient()
                 .create()
 
-        val builder = OkHttpClient.Builder()
-
+        val builder = UnsafeOkHttpClient.getUnsafeOkHttpClient()
         addLogInterceptor(builder)
-
         val client = builder.build()
 
         val retrofit = Retrofit.Builder()

@@ -13,10 +13,10 @@ public class DriverDetail implements Serializable {
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
-    @SerializedName("firstName")
+    @SerializedName("firstname")
     @Expose
     private String firstName;
-    @SerializedName("lastName")
+    @SerializedName("lastname")
     @Expose
     private String lastName;
     @SerializedName("msisdn")

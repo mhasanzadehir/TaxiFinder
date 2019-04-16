@@ -1,5 +1,6 @@
 package ir.sharif.taxifinder
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.ViewTreeObserver
@@ -21,9 +22,12 @@ class DriverDetailActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = resources.getColor(R.color.action_bar_blue)
         }
-        driverDetail = intent?.extras?.getSerializable("DRIVER_DETAIL") as DriverDetail
+        DataRepo.driverDetail ?: return
+        driverDetail = DataRepo.driverDetail!!
         initUi()
-        addCarTag("9898988", carTagImageView, rootLayout)
+        val plate = intent?.extras?.getString("PLATE")
+        plate ?: return
+        addCarTag(plate, carTagImageView, rootLayout)
     }
 
     fun getStatusBarHeight(): Int {
@@ -89,16 +93,20 @@ class DriverDetailActivity : BaseActivity() {
 
     private fun initUi() {
         backImageView.setOnClickListener { onBackPressed() }
-        footer_bar.setOnClickListener { onBackPressed() }
+        footer_bar.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
         Glide.with(this).load(driverDetail.imageUrl).into(profileImage)
         fullName.text = driverDetail.firstName + " " + driverDetail.lastName
         brandTextView.text = driverDetail.car.brand
         modelTextView.text = driverDetail.car.model
-        yearTextView.text = driverDetail.car.createdYear
+        yearTextView.text = FormatHelper.toPersianNumber(driverDetail.car.createdYear)
         usageTextView.text = driverDetail.car.usage
         companyTextView.text = driverDetail.car.company
         colorTextView.text = driverDetail.car.color
-        phoneNumberTextView.text = driverDetail.msisdn
+        phoneNumberTextView.text = FormatHelper.toPersianNumber(driverDetail.msisdn)
 
         phoneNumberTextView.bold()
         brandTextView.bold()

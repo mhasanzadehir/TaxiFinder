@@ -18,12 +18,12 @@ interface WebserviceUrls {
 
 
     @GET(WebserviceAddresses.DRIVER_DETAIL)
-    fun driverDetail(@Body request: DriverDetailRequest): Call<DriverDetailResponse>
+    fun driverDetail(@Query("plate") plateNo: String, @Query("id") id: String): Call<DriverDetailResponse>
 
 
 
     @GET(WebserviceAddresses.DRIVER_CODE)
-    fun driverCode(@Query("uuid") uuid: String): Call<DriverCodeResponse>
+    fun driverCode(@Query("id") uuid: String): Call<DriverCodeResponse>
 
 
     @POST(WebserviceAddresses.DRIVER_REGISTER)

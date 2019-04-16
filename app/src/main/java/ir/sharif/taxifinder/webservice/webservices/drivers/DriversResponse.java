@@ -13,7 +13,7 @@ public class DriversResponse {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("driver")
+    @SerializedName("result")
     @Expose
     private List<Driver> driver = null;
 
