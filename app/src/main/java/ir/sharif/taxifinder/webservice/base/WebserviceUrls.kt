@@ -1,5 +1,7 @@
 package ir.sharif.taxifinder.webservice.base
 
+import ir.sharif.taxifinder.webservice.webservices.driverCode.DriverCodeRequest
+import ir.sharif.taxifinder.webservice.webservices.driverCode.DriverCodeResponse
 import ir.sharif.taxifinder.webservice.webservices.driverDetail.DriverDetailResponse
 import ir.sharif.taxifinder.webservice.webservices.driverDetail.DriverDetailRequest
 import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegisterRequest
@@ -7,9 +9,7 @@ import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegister
 import ir.sharif.taxifinder.webservice.webservices.drivers.DriversRequest
 import ir.sharif.taxifinder.webservice.webservices.drivers.DriversResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface WebserviceUrls {
 
@@ -19,6 +19,11 @@ interface WebserviceUrls {
 
     @GET(WebserviceAddresses.DRIVER_DETAIL)
     fun driverDetail(@Body request: DriverDetailRequest): Call<DriverDetailResponse>
+
+
+
+    @GET(WebserviceAddresses.DRIVER_CODE)
+    fun driverCode(@Query("uuid") uuid: String): Call<DriverCodeResponse>
 
 
     @POST(WebserviceAddresses.DRIVER_REGISTER)

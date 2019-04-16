@@ -11,4 +11,9 @@
     <string name="company">شرکت</string>
     <string name="color">رنگ</string>
     <string name="phone_number">شماره ی موبایل</string>
+    <string name="taxi_inquiry">استعلام تاکسیرانی</string>
+    <string name="driver_code">کد راننده</string>
+    <string name="inquiry_alert">به منظور دریافت اطلاعات تاکسی موردنظر \n شماره پلاک خودرو را وارد نموده و تایید را بزنید
+    </string>
+    <string name="clear_form">خالی کردن فرم</string>
 </resources>

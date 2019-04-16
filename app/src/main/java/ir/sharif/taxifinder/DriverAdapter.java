@@ -10,17 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.sharif.taxifinder.webservice.webservices.drivers.Driver;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DriverAdapter extends RecyclerView.Adapter<DriverViewHolder> {
 
     private Context mContext;
-    private ArrayList<Driver> drivers;
-    private RelativeLayout rootLayout;
+    private List<Driver> drivers;
 
-    public DriverAdapter(Context context, ArrayList<Driver> drivers, RelativeLayout rootLayout) {
+    public DriverAdapter(Context context, List<Driver> drivers) {
         mContext = context;
         this.drivers = drivers;
-        this.rootLayout = rootLayout;
     }
 
     @NonNull
@@ -28,7 +27,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverViewHolder> {
     public DriverViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View convertView = inflater.inflate(R.layout.group_view, null);
-        return new DriverViewHolder(convertView, rootLayout);
+        return new DriverViewHolder(convertView);
     }
 
     @Override

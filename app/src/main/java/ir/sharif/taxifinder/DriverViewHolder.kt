@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ir.sharif.taxifinder.webservice.webservices.drivers.Driver
 
-class DriverViewHolder(itemView: View, val rootLayout: RelativeLayout) : RecyclerView.ViewHolder(itemView) {
+class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val rootLayout = itemView.findViewById<RelativeLayout>(R.id.rootLayout)
     private val fullNameTextView = itemView.findViewById<TextView>(R.id.fullName)
     private val phoneNumberTextView = itemView.findViewById<TextView>(R.id.phoneNumber)
     private val anotherPhoneNumberTextView = itemView.findViewById<TextView>(R.id.anotherPhoneNumber)
@@ -30,7 +31,7 @@ class DriverViewHolder(itemView: View, val rootLayout: RelativeLayout) : Recycle
         anotherPhoneNumberTextView.text = driver.msisdn
         phoneNumberTextView.setTypeface(phoneNumberTextView.typeface, Typeface.BOLD)
         anotherPhoneNumberTextView.setTypeface(anotherPhoneNumberTextView.typeface, Typeface.BOLD)
-        addCarTag("1234567", carTagImageView, rootLayout)
+//        addCarTag("1234567", carTagImageView, rootLayout)
         Glide.with(itemView.context).load(driver.imageUrl).into(profileImage)
         profileImage.setOnClickListener {
             ContextCompat.startActivity(itemView.context, Intent(itemView.context, DriverDetailActivity::class.java), null)
@@ -112,7 +113,7 @@ class DriverViewHolder(itemView: View, val rootLayout: RelativeLayout) : Recycle
                 imageView.getLocationInWindow(array)
                 val params = RelativeLayout.LayoutParams(w.toInt(), h.toInt())
                 params.leftMargin = (array[0] + positionX * ratio).toInt()
-                params.topMargin = (array[1] - getStatusBarHeight() + 54 * ratio - h).toInt()
+                params.topMargin = (array[1] - getStatusBarHeight() - 900 + 54 * ratio - h).toInt()
                 rootLayout.addView(num, params)
             }
 

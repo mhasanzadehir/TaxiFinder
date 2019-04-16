@@ -14,7 +14,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DriverDetailActivity">
+        <activity android:name=".DriverInquiryActivity"
+        android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+                android:name=".DriverDetailActivity"
+                android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".MainActivity"

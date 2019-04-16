@@ -3,7 +3,9 @@ package ir.sharif.taxifinder.webservice.webservices.driverDetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DriverDetail {
+import java.io.Serializable;
+
+public class DriverDetail implements Serializable {
 
     @SerializedName("driverId")
     @Expose

@@ -1,6 +1,8 @@
 package ir.sharif.taxifinder.webservice
 
 import ir.sharif.taxifinder.webservice.base.WebserviceException
+import ir.sharif.taxifinder.webservice.webservices.driverCode.DriverCodeProcess
+import ir.sharif.taxifinder.webservice.webservices.driverCode.DriverCodeResponse
 import ir.sharif.taxifinder.webservice.webservices.driverDetail.DriverDetailProcess
 import ir.sharif.taxifinder.webservice.webservices.driverDetail.DriverDetailResponse
 import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegisterProcess
@@ -20,6 +22,10 @@ object WebserviceHelper {
 
 
     @Throws(IOException::class, WebserviceException::class)
-    fun registerDriver(uuid: Int, driverId: Int): DriverRegisterResponse = DriverRegisterProcess(uuid, driverId).process()
+    fun registerDriver(uuid: String, driverId: Int): DriverRegisterResponse = DriverRegisterProcess(uuid, driverId).process()
+
+
+    @Throws(IOException::class, WebserviceException::class)
+    fun driverCode(uuid: String): DriverCodeResponse = DriverCodeProcess(uuid).process()
 
 }

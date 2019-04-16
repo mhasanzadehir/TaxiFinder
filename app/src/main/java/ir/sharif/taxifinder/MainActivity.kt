@@ -10,10 +10,26 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
+import ir.sharif.taxifinder.webservice.WebserviceHelper
 import ir.sharif.taxifinder.webservice.webservices.drivers.Driver
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity() {
+
+    var drivers : List<Driver> = arrayListOf(Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+        "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+        Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+        Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+        Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+        Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
+        Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
+            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,38 +63,27 @@ class MainActivity : BaseActivity() {
             true
         }
 
-
-
-
         initList()
+//        callWebservice()
 
     }
 
     private fun callWebservice() {
+        thread(true) {
+            val response = WebserviceHelper.getDrivers()
+            if(response.code == 200){
+                drivers = response.driver
+                listView.adapter?.notifyDataSetChanged()
+            } else{
+                Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+            }
 
-//        thread(true) {
-//            val drivers = WebserviceHelper.getDrivers()
-//        }
+        }
     }
 
     private fun initList() {
 
-        val drivers = arrayListOf(Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-            "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
-            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
-            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
-            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
-            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶"),
-            Driver("https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg",
-                "مهدی", "حسن زاده", "12345", "سمند", "۴۳ت۷۵۶")
-            )
-
-        // Setting up the Adapter
-        val adapter = DriverAdapter(this, drivers, rootLayout)
+        val adapter = DriverAdapter(this, drivers)
 
         listView.layoutManager = LinearLayoutManager(this)
         listView.adapter = adapter
@@ -94,8 +99,18 @@ class MainActivity : BaseActivity() {
 
         if (requestCode == 100 && data != null) {
             val barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE) as Barcode
-            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show()
+            callInquiryWebservice(barcode.rawValue)
         }
 
+    }
+
+    private fun callInquiryWebservice(uuid: String) {
+        thread(true) {
+            val response = WebserviceHelper.driverCode(uuid)
+            val intent = Intent(this, DriverInquiryActivity::class.java)
+            intent.putExtra("UUID", uuid)
+            intent.putExtra("DRIVER_CODE", response.driverCode)
+            startActivity(intent)
+        }
     }
 }

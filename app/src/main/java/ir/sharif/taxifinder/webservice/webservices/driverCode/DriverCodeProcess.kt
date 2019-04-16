@@ -1,4 +1,4 @@
-package ir.sharif.taxifinder.webservice.webservices.driverRegister
+package ir.sharif.taxifinder.webservice.webservices.driverCode
 
 import java.io.IOException
 
@@ -7,9 +7,9 @@ import ir.sharif.taxifinder.webservice.base.MyRetrofit
 import ir.sharif.taxifinder.webservice.base.WebserviceException
 import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegisterRequest
 
-class DriverRegisterProcess(uuid: String, driverId: Int) : BaseProcess() {
-    private val request: DriverRegisterRequest = DriverRegisterRequest(uuid, driverId)
+class DriverCodeProcess(val uuid: String) : BaseProcess() {
+    private val request: DriverCodeRequest = DriverCodeRequest(uuid)
 
     @Throws(IOException::class, WebserviceException::class)
-    override fun process() = send(MyRetrofit.webserviceUrls.driverRegister(request))
+    override fun process() = send(MyRetrofit.webserviceUrls.driverCode(uuid))
 }

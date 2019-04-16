@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        tools:context=".DriverInquiryActivity">
+
+
+
+    <RelativeLayout
+            android:id="@+id/action_bar"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:background="@color/action_bar_blue"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/backImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+
+        <TextView
+                android:text="@string/taxi_inquiry"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:id="@+id/body"
+            android:layout_below="@id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_above="@id/footer_bar"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:background="@color/header_blue"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="0dp"
+                              android:gravity="center_vertical"
+                              android:layout_weight="1">
+                    <TextView
+                            android:id="@+id/driverCodeTv"
+                            android:text="98726236"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                            android:id="@+id/driverCodeLabel"
+                            android:layout_width="wrap_content"
+                            android:text="@string/driver_code"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:gravity="center_horizontal"
+                              android:layout_height="0dp"
+                              android:layout_weight="1">
+
+                    <TextView
+                            android:id="@+id/inquiryLabel"
+                            android:layout_width="wrap_content"
+                            android:text="@string/inquiry_alert"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:padding="12dp"
+                android:gravity="center_horizontal"
+                android:layout_weight="3"
+                android:layout_marginTop="20dp"
+                android:layout_height="0dp">
+
+
+            <LinearLayout
+                    android:id="@+id/clearLayout"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+
+                <TextView
+                        android:id="@+id/clearFormLabel"
+                        android:text="@string/clear_form"
+                        android:layout_toLeftOf="@id/clearImageView"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+
+                <ImageView android:layout_width="24dp"
+                           android:id="@+id/clearImageView"
+                           android:src="@mipmap/ic_close"
+                           android:layout_marginRight="4dp"
+                           android:layout_height="24dp"/>
+
+            </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/carTagImageView"
+                    android:layout_width="852.5px"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="207.5px"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/clearLayout"
+                    android:src="@mipmap/car_tag"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/keyboardLayout"
+                      android:layout_width="852.5px"
+                      android:gravity="center_horizontal"
+                      android:layout_marginTop="12dp"
+                    android:layout_alignParentRight="true"
+                      android:layout_below="@id/carTagImageView"
+                      android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+            android:id="@+id/footer_bar"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/action_bar_blue"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/ok"
+                android:text="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+            android:id="@+id/rootLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

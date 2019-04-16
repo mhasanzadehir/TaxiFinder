@@ -13,12 +13,15 @@ import kotlinx.android.synthetic.main.activity_driver_detail.*
 class DriverDetailActivity : BaseActivity() {
 
 
+    lateinit var driverDetail: DriverDetail
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_detail)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = resources.getColor(R.color.action_bar_blue)
         }
+        driverDetail = intent?.extras?.getSerializable("DRIVER_DETAIL") as DriverDetail
         initUi()
         addCarTag("9898988", carTagImageView, rootLayout)
     }
@@ -33,7 +36,7 @@ class DriverDetailActivity : BaseActivity() {
     }
 
     private fun addCarTag(number: String, imageView: ImageView, layout: RelativeLayout) {
-        val positionsX = arrayOf(48,73, 166, 196, 231, 272, 305)
+        val positionsX = arrayOf(48, 73, 166, 196, 231, 272, 305)
         imageView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 imageView.viewTreeObserver.removeOnPreDrawListener(this)
@@ -87,11 +90,6 @@ class DriverDetailActivity : BaseActivity() {
     private fun initUi() {
         backImageView.setOnClickListener { onBackPressed() }
         footer_bar.setOnClickListener { onBackPressed() }
-        val driverDetail = DriverDetail(
-            1000, "https://www.highwaytohimalayas.com//user_upload/images/5899ffcf6e09a897008b5c04-750-750.jpg"
-            , "مهدی", "حسن زاده", "۰۹۱۵۰۷۷۳۸۳۰", Car("ایران خودرو", "۴۰۵", "۱۳۹۳", "تشریفات", "زرد", "تست تاکسی")
-        )
-
         Glide.with(this).load(driverDetail.imageUrl).into(profileImage)
         fullName.text = driverDetail.firstName + " " + driverDetail.lastName
         brandTextView.text = driverDetail.car.brand
