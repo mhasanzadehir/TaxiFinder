@@ -24,6 +24,7 @@ class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val anotherPhoneNumberTextView = itemView.findViewById<TextView>(R.id.anotherPhoneNumber)
     private val profileImage = itemView.findViewById<ImageView>(R.id.profileImage)
     private val carTagImageView = itemView.findViewById<ImageView>(R.id.carTagImageView)
+    private val carTagTextView = itemView.findViewById<TextView>(R.id.carTagTextView)
     private val bottomLayout = itemView.findViewById<RelativeLayout>(R.id.bottom_layout)
     private val arrowImage = itemView.findViewById<ImageView>(R.id.arrow)
     private var isExpand = false
@@ -33,6 +34,7 @@ class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fullNameTextView.setTypeface(fullNameTextView.typeface, Typeface.BOLD)
         phoneNumberTextView.text = FormatHelper.toPersianNumber(driver.msisdn)
         brandTextView.text = driver.carBrand
+        carTagTextView.text=normalizePlate(driver.plate)
         anotherPhoneNumberTextView.text = FormatHelper.toPersianNumber(driver.msisdn)
         phoneNumberTextView.setTypeface(phoneNumberTextView.typeface, Typeface.BOLD)
         anotherPhoneNumberTextView.setTypeface(anotherPhoneNumberTextView.typeface, Typeface.BOLD)
@@ -46,6 +48,22 @@ class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 false
             }
         }
+
+    }
+
+    private fun normalizePlate(plate: String?): CharSequence? {
+        plate ?: return ""
+        var result = ""
+        result += plate[7]
+        result += plate[8]
+        result += "ت"
+        result += plate[2]
+        result += plate[3]
+        result += plate[4]
+        result += "ایران"
+        result += plate[0]
+        result += plate[1]
+        return result
 
     }
 
