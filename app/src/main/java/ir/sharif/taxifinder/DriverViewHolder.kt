@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide
 import ir.sharif.taxifinder.webservice.webservices.drivers.Driver
 
 class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val rootLayout = itemView.findViewById<FrameLayout>(R.id.rootLayout)
     private val fullNameTextView = itemView.findViewById<TextView>(R.id.fullName)
     private val phoneNumberTextView = itemView.findViewById<TextView>(R.id.phoneNumber)
     private val brandTextView = itemView.findViewById<TextView>(R.id.brandName)
@@ -54,15 +53,15 @@ class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private fun normalizePlate(plate: String?): CharSequence? {
         plate ?: return ""
         var result = ""
-        result += plate[7]
-        result += plate[8]
+        result += FormatHelper.toPersianNumber(plate[7].toString())
+        result += FormatHelper.toPersianNumber(plate[8].toString())
         result += "ت"
-        result += plate[2]
-        result += plate[3]
-        result += plate[4]
+        result += FormatHelper.toPersianNumber(plate[2].toString())
+        result += FormatHelper.toPersianNumber(plate[3].toString())
+        result += FormatHelper.toPersianNumber(plate[4].toString())
         result += "ایران"
-        result += plate[0]
-        result += plate[1]
+        result += FormatHelper.toPersianNumber(plate[0].toString())
+        result += FormatHelper.toPersianNumber(plate[1].toString())
         return result
 
     }
@@ -79,7 +78,7 @@ class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         phoneNumberTextView.visibility = View.GONE
         brandTextView.visibility = View.VISIBLE
         arrowImage.rotation = 180F
-        addCarTag("1234567", carTagImageView, rootLayout)
+//        addCarTag("1234567", carTagImageView, rootLayout)
     }
 
     fun getStatusBarHeight(): Int {

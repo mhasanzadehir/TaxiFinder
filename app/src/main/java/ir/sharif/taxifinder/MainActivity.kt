@@ -118,10 +118,17 @@ class MainActivity : BaseActivity() {
     private fun callInquiryWebservice(uuid: String) {
         thread(true) {
             val response = WebserviceHelper.driverCode(uuid)
-            val intent = Intent(this, DriverInquiryActivity::class.java)
-            intent.putExtra("UUID", uuid)
-            intent.putExtra("DRIVER_CODE", response.driverCode.driverCode)
-            startActivity(intent)
+            if (response.code == 200) {
+                val intent = Intent(this, DriverInquiryActivity::class.java)
+                intent.putExtra("UUID", uuid)
+                intent.putExtra("DRIVER_CODE", response.driverCode.driverCode)
+                startActivity(intent)
+            } else {
+                runOnUiThread {
+                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
     }
 }
