@@ -7,7 +7,6 @@
         tools:context=".DriverInquiryActivity">
 
 
-
     <RelativeLayout
             android:id="@+id/action_bar"
             android:padding="8dp"
@@ -138,23 +137,22 @@
 
             </LinearLayout>
 
-            <ImageView
-                    android:id="@+id/carTagImageView"
-                    android:layout_width="852.5px"
+            <ir.sharif.taxifinder.PlateView
+                    android:id="@+id/plateView" android:layout_width="852.5px"
                     android:layout_marginTop="8dp"
-                    android:layout_height="207.5px"
                     android:layout_alignParentRight="true"
                     android:layout_below="@id/clearLayout"
-                    android:src="@mipmap/car_tag"/>
+                    android:background="@mipmap/car_tag"
+                    android:layout_height="207.5px"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/keyboardLayout"
-                      android:layout_width="852.5px"
-                      android:gravity="center_horizontal"
-                      android:layout_marginTop="12dp"
+                    android:layout_width="852.5px"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
                     android:layout_alignParentRight="true"
-                      android:layout_below="@id/carTagImageView"
-                      android:layout_height="wrap_content"/>
+                    android:layout_below="@id/plateView"
+                    android:layout_height="wrap_content"/>
 
 
         </RelativeLayout>
@@ -181,12 +179,4 @@
                 android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-
-    <FrameLayout
-            android:id="@+id/rootLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </FrameLayout>
-
 </RelativeLayout>

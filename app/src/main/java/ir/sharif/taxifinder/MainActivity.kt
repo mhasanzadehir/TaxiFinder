@@ -15,6 +15,7 @@ import com.notbytes.barcode_reader.BarcodeReaderActivity
 import ir.sharif.taxifinder.webservice.WebserviceHelper
 import ir.sharif.taxifinder.webservice.webservices.drivers.Driver
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity() {
@@ -58,8 +59,6 @@ class MainActivity : BaseActivity() {
             if (position == 0) {
                 val launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false)
                 startActivityForResult(launchIntent, 100)
-            } else {
-                callWebservice()
             }
             true
         }
@@ -71,15 +70,18 @@ class MainActivity : BaseActivity() {
 
     private fun callWebservice() {
         thread(true) {
-            val response = WebserviceHelper.getDrivers()
-            if (response.code == 200) {
-                drivers = response.driver
-                updateList()
-            } else {
-                runOnUiThread {
-                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+            try {
+                val response = WebserviceHelper.getDrivers()
+                if (response.code == 200) {
+                    drivers = response.driver
+                    updateList()
+                } else {
+                    toast(response.message)
                 }
+            } catch (e: Exception){
+                toastNoNetwork()
             }
+
 
         }
     }
@@ -117,17 +119,18 @@ class MainActivity : BaseActivity() {
 
     private fun callInquiryWebservice(uuid: String) {
         thread(true) {
-            val response = WebserviceHelper.driverCode(uuid)
-            if (response.code == 200) {
-                val intent = Intent(this, DriverInquiryActivity::class.java)
-                intent.putExtra("UUID", uuid)
-                intent.putExtra("DRIVER_CODE", response.driverCode.driverCode)
-                startActivity(intent)
-            } else {
-                runOnUiThread {
-                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+            try {
+                val response = WebserviceHelper.driverCode(uuid)
+                if (response.code == 200) {
+                    val intent = Intent(this, DriverInquiryActivity::class.java)
+                    intent.putExtra("UUID", uuid)
+                    intent.putExtra("DRIVER_CODE", response.driverCode.driverCode)
+                    startActivity(intent)
+                } else {
+                    toast(response.message)
                 }
-
+            }catch (e:Exception){
+                toastNoNetwork()
             }
         }
     }

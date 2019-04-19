@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        android:id="@+id/rootLayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent" android:layout_height="match_parent"
         tools:context=".DriverDetailActivity">
 
     <RelativeLayout
@@ -130,7 +130,6 @@
         </LinearLayout>
 
 
-
         <ScrollView
                 android:layout_weight="3"
                 android:layout_width="match_parent"
@@ -141,18 +140,19 @@
                     android:padding="12dp"
                     android:layout_height="wrap_content">
 
-                <ImageView
-                        android:id="@+id/carTagImageView"
-                        android:layout_width="682px"
-                        android:layout_height="166px"
+
+                <ir.sharif.taxifinder.PlateView
+                        android:id="@+id/plateView" android:layout_width="852.5px"
+                        android:layout_marginTop="8dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@mipmap/car_tag"/>
+                        android:background="@mipmap/car_tag"
+                        android:layout_height="207.5px"/>
 
                 <LinearLayout
                         android:id="@+id/brandLayout"
                         android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
-                        android:layout_below="@id/carTagImageView"
+                        android:layout_below="@id/plateView"
                         android:layout_height="wrap_content">
 
                     <TextView
@@ -168,7 +168,7 @@
                           android:background="@color/blue_light"/>
 
                     <TextView android:id="@+id/brandLabel"
-                            android:layout_width="0dp"
+                              android:layout_width="0dp"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
                               android:gravity="center"
@@ -227,7 +227,7 @@
                     <View android:layout_width="2dp" android:layout_height="match_parent"
                           android:background="@color/blue_light"/>
                     <TextView android:id="@+id/yearLabel"
-                            android:layout_width="0dp"
+                              android:layout_width="0dp"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
                               android:gravity="center"

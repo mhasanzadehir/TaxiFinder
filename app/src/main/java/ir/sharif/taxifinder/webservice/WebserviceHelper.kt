@@ -9,6 +9,8 @@ import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegister
 import ir.sharif.taxifinder.webservice.webservices.driverRegister.DriverRegisterResponse
 import ir.sharif.taxifinder.webservice.webservices.drivers.DriversProcess
 import ir.sharif.taxifinder.webservice.webservices.drivers.DriversResponse
+import ir.sharif.taxifinder.webservice.webservices.login.LoginProcess
+import ir.sharif.taxifinder.webservice.webservices.login.LoginResponse
 import java.io.IOException
 
 object WebserviceHelper {
@@ -27,5 +29,9 @@ object WebserviceHelper {
 
     @Throws(IOException::class, WebserviceException::class)
     fun driverCode(uuid: String): DriverCodeResponse = DriverCodeProcess(uuid).process()
+
+
+    @Throws(IOException::class, WebserviceException::class)
+    fun login(msisdn: String): LoginResponse = LoginProcess(msisdn).process()
 
 }

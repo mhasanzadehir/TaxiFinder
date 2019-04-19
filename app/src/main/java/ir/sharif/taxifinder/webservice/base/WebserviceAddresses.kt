@@ -5,5 +5,6 @@ object WebserviceAddresses {
     const val DRIVERS = "drivers"
     const val DRIVER_DETAIL = "driverInquiry"
     const val DRIVER_CODE = "driverCode"
+    const val LOGIN = "login"
     const val DRIVER_REGISTER = "driverRegister"
 }
