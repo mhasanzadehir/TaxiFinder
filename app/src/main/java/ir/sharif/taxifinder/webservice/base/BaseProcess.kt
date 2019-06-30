@@ -10,9 +10,9 @@ abstract class BaseProcess {
     protected fun <T> send(call: Call<T>): T {
         val execute = call.execute()
         if (execute.code() > 299 || execute.code() < 200) {
-            throw WebserviceException(execute.code(), execute.errorBody().string())
+            throw WebserviceException(execute.code(), execute.errorBody()!!.string())
         }
-        return execute.body()
+        return execute.body()!!
     }
 
     @Throws(IOException::class, WebserviceException::class)
